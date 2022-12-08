@@ -97,6 +97,8 @@ def main():
     sub=("")
     suffix=("")
     halide_subname=("")
+    halide_prefix=('')
+    alcohol_suffix=('')
     aretheresub=input("are there substituents? (y/n): " ) 
     if aretheresub == "y":  
         howmanysub=int(input("How many substituents?: "))
@@ -128,9 +130,13 @@ def main():
 
                 if howmanysub>1:
                     prefixes+= (whereonthechain +',')
-                    # sub=(whereonthechain+"-"+subname)
+                    #okay so prefixes here work by making the comma separated list 
+                    #i still  need to make it so it says something like (1,2-methyl-3-ethyl)
+                    #instead of (1,2,3-methylethyl)
                     sub+=subname
                     carbon_prefix=(prefixes+'-'+sub)
+
+
             elif isitcarbon[0]=="n":
                 is_there_a_halide=input("Does the substituent contain a halide? (y/n) ")
                 if is_there_a_halide=="y": #if its a halide substituent
@@ -146,6 +152,8 @@ def main():
                     halide_prefix=(whereonthechain+"-"+halide_subname+"-")
                     # if howmanysub>1:
                     #     halide_prefix+=(halide_prefix+"-")
+                    #needed to do something similar as to earlier but might just need to figure out a new order for coding all of this
+
 
                 elif is_there_a_halide=="n":
                     is_there_an_alc=input("Does the substituent contain an OH group? (y/n) ") #if its an alcohol substituent 
@@ -160,14 +168,29 @@ def main():
     dbbonds=input("are there any double bonds on the molecule? (y/n): ") #ask if there's double bonds
     tpbonds=input("are there any triple bonds on the molecule? (y/n): ") #ask if there's triple bond
     if dbbonds == "y":
-        dbwhere=input("What carbon is the double bond located on?")
-        db=("-"+dbwhere+"-ene")
-        mainname=(mainname+db)
+        dbhowmany=int(input("How many double bonds?"))
+        if dbhowmany>1:
+            for i in range(dbhowmany):
+                dbwhere=input("What carbon is this double bond located on?")
+                prefixes_dbwhere=(dbwhere+',') #okay so this doesnt work 
+            db=('-'+prefixes_dbwhere+'-ene')
+            mainname=(mainname+db)
+        else:
+            db=("-"+dbwhere+"-ene")
+            mainname=(mainname+db)
      #need to ask where
     if tpbonds == "y":
-        tpwhere=input("What carbon is the triple bond located on?")
-        tp=("-"+tpwhere+"-yl")
-        mainname=(mainname+tp)
+        tphowmany=int(input("how many triple bonds?"))
+        if tphowmany>1:
+            for i in range(tphowmany):
+                tpwhere=input("What carbon is the triple bond located on?")
+                prefixes_tpwhere=(tpwhere+',') #this also doesnt work
+            tp=('-'+prefixes_tpwhere+'-yl')
+            mainname=(mainname+tp)
+        else:
+            tp=("-"+tpwhere+"-yl")
+            mainname=(mainname+tp)
+
     else: #if it's just single bonds
         sb="ane"
         mainname=(mainname+sb)
