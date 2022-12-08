@@ -171,9 +171,10 @@ def main():
     if dbbonds == "y":
         dbhowmany=int(input("How many double bonds?"))
         if dbhowmany>1:
+            prefixes_dbwhere = ''  # initialize the string for double bond locations
             for i in range(dbhowmany):
                 dbwhere=input("What carbon is this double bond located on?")
-                prefixes_dbwhere=(dbwhere+',') #okay so this doesnt work 
+                prefixes_dbwhere += dbwhere + ',' #okay so this doesnt work 
             db=('-'+prefixes_dbwhere+'-ene')
             mainname=(mainname+db)
         else:
