@@ -96,6 +96,7 @@ def main():
     prefixes=('') 
     sub=("")
     suffix=("")
+    carbon_prefix=('')
     halide_subname=("")
     halide_prefix=('')
     alcohol_suffix=('')
