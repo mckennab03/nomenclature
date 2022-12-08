@@ -1,5 +1,5 @@
 #naming basic organic molecules by IUPAC rules
-
+# Hi, McKenna! It's Dr. Eicholtz. :)
 def main():
     #add a title/intro or something 
 
